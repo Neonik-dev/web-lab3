@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+    <title>Web lab3</title>
+    <link rel="stylesheet" href="stylesheets/styles.css"/>
+</h:head>
+
+
+<f:view>
+    <h:body>
+        <ui:include src="static/header.html"/>
+        <br/>
+
+        <canvas id="clock" class="clock"></canvas>
+
+        <div class="footer">
+            <div id="goMain">
+                <a href="main.xhtml">Перейти на основную страницу</a>
+            </div>
+        </div>
+    </h:body>
+</f:view>
+
+<script src="scripts/clock.js" type="text/javascript"></script>
+</html>

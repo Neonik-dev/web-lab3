@@ -1,0 +1,41 @@
+header {
+    font-family: monospace;
+    font-size: large;
+    color: black;
+
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10px;
+}
+
+.inner {
+    display: inline-block;
+}
+
+.buttonResult {
+    padding-left: 120px;
+}
+
+.inline {
+    justify-content: center;
+    float: left;
+    margin-top: 60px;
+    width: 43%;
+    margin-right: 10px;
+}
+#buttons {
+    text-align: right;
+    margin-top: 10%;
+}
+
+#plot {
+    text-align: center;
+}
+
+#errorMessage {
+    color: red;
+}
+
+canvas {
+    border: 1px solid white;
+}

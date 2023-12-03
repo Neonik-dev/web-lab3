@@ -39,3 +39,8 @@ header {
 canvas {
     border: 1px solid white;
 }
+
+.Y-button-group {
+    padding-left: 90px;
+}
+

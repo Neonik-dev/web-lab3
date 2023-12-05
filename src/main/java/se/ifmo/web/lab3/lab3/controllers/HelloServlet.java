@@ -1,4 +1,4 @@
-package se.ifmo.web.lab3.lab3;
+package se.ifmo.web.lab3.lab3.controllers;
 
 import java.io.*;
 

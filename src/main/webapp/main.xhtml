@@ -20,11 +20,11 @@
         <ui:include src="static/header.html"/>
         <br/>
         <div id="buttons" class="inline">
-            <h:form action="${pageContext.request.contextPath}/server/" method="post" id="sendToServer">
+            <h:form action="${pageContext.request.contextPath}/point/send" method="post" id="sendToServer">
                 <div class="X-button-group">
-                    <div class="inner">Выберете X:</div>
+                    <div class="inner">Выберете X: </div>
                     <p:inputNumber name="x" id="X-input" placeholder="(от -5 до 5)" required="true" decimalPlaces="3"
-                                   maxValue="5" minValue="-5"/>
+                                   maxValue="5" minValue="-5" onkeypress="if (event.keyCode === 13) { return false; }" value="#{point.x}"/>
                 </div>
                 <br/>
                 <div class="Y-button-group">
@@ -36,7 +36,7 @@
                 </div>
                 <div class="Y-button-group1">
                     <h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="20" styleClass="Y-buttons">
-                        <div class="inner">Введите Y:</div>
+                        <div class="inner">Введите Y: </div>
                         <p:selectBooleanCheckbox value="-1">-1 </p:selectBooleanCheckbox>
                         <p:selectBooleanCheckbox value="0">0 </p:selectBooleanCheckbox>
                         <p:selectBooleanCheckbox value="1">1 </p:selectBooleanCheckbox>
@@ -52,17 +52,25 @@
                 <br/>
 
                 <div class="R-button-group">
-                    <div class="inner">Выберете R:</div>
+                    <div class="inner">Выберете R: </div>
                     <h:panelGrid columns="1">
-                        <h:outputText id="output" value="R = #{sliderView.number2}"/>
-                        <h:inputHidden id="txt2" value="#{sliderView.number4}"/>
-                        <p:slider for="txt2" display="output" style="width: 100px" minValue="2" maxValue="5" step="0.25"
-                                  displayTemplate="R = {value}"/>
+                        <h:outputText id="output" value="R = #{point.r}"/>
+                        <h:inputHidden id="txt2" required="true" value="#{point.r}"/>
+                        <p:slider for="txt2" display="output" style="width: 100px" minValue="2" maxValue="5" step="0.25"/>
                     </h:panelGrid>
+                </div>
+                <br/>
+
+                <div class="commandButton">
+                    <h:commandButton value="Submit">
+                        <f:ajax execute="@form" render="@form" />
+                        <f:ajax listener="#{point.submit()}" render="tablePanel" execute="@form"/>
+                    </h:commandButton>
                 </div>
             </h:form>
         </div>
         <br/>
+        #{point.toString()}
 
         <div id="plot" class="inline">
             <canvas id="canvas" width="350" height="350"></canvas>

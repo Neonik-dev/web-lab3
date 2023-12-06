@@ -12,11 +12,10 @@ import java.io.Serializable;
 @Data
 public class Point implements Serializable {
     private double x;
-    private int y;
+    private Integer y;
     private double r;
 
     public void submit() {
-        x += 1;
         System.out.println(this);
     }
 }

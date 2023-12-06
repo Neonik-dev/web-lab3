@@ -29,25 +29,26 @@
                 <br/>
                 <div class="Y-button-group">
                     <h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="20" styleClass="Y-buttons">
-                        <p:selectBooleanCheckbox value="-4">-4 </p:selectBooleanCheckbox>
-                        <p:selectBooleanCheckbox value="-3">-3 </p:selectBooleanCheckbox>
-                        <p:selectBooleanCheckbox value="-2">-2 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox-4" onchange="setY(-4, this)">-4 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox-3" onchange="setY(-3, this)">-3 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox-2" onchange="setY(-2, this)">-2 </p:selectBooleanCheckbox>
                     </h:panelGrid>
                 </div>
                 <div class="Y-button-group1">
                     <h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="20" styleClass="Y-buttons">
                         <div class="inner">Введите Y: </div>
-                        <p:selectBooleanCheckbox value="-1">-1 </p:selectBooleanCheckbox>
-                        <p:selectBooleanCheckbox value="0">0 </p:selectBooleanCheckbox>
-                        <p:selectBooleanCheckbox value="1">1 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox-1" onchange="setY(-1, this)">-1 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox0" onchange="setY(0, this)">0 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox1" onchange="setY(1, this)">1 </p:selectBooleanCheckbox>
                     </h:panelGrid>
                 </div>
                 <div class="Y-button-group">
                     <h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="20" styleClass="Y-buttons">
-                        <p:selectBooleanCheckbox value="2">2 </p:selectBooleanCheckbox>
-                        <p:selectBooleanCheckbox value="3">3 </p:selectBooleanCheckbox>
-                        <p:selectBooleanCheckbox value="4">4 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox2" onchange="setY(2, this)">2 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox3" onchange="setY(3, this)">3 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox4" onchange="setY(4, this)">4 </p:selectBooleanCheckbox>
                     </h:panelGrid>
+                    <h:inputHidden id="Y_data" required="true" value="#{point.y}"/>
                 </div>
                 <br/>
 
@@ -63,8 +64,9 @@
 
                 <div class="commandButton">
                     <h:commandButton value="Submit">
-                        <f:ajax execute="@form" render="@form" />
-                        <f:ajax listener="#{point.submit()}" render="tablePanel" execute="@form"/>
+                        <f:ajax listener="#{point.submit()}" render="tablePanel" execute="form"
+                                onevent="handleSubmit"/>
+<!--                        <f:ajax listener="#{point.submit()}" render="tablePanel" execute="@form"/>-->
                     </h:commandButton>
                 </div>
             </h:form>
@@ -85,4 +87,5 @@
 </f:view>
 
 <script src="scripts/draw.js" type="text/javascript"></script>
+<script src="scripts/utils.js" type="text/javascript"></script>
 </html>

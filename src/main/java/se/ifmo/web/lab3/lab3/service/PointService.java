@@ -1,6 +1,6 @@
 package se.ifmo.web.lab3.lab3.service;
 
-import se.ifmo.web.lab3.lab3.bean.Attempt;
+import se.ifmo.web.lab3.lab3.persistence.model.Attempt;
 import se.ifmo.web.lab3.lab3.bean.Point;
 import se.ifmo.web.lab3.lab3.mapper.PointMapper;
 

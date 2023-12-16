@@ -20,7 +20,7 @@
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <jakarta.jakartaee-web-api.version>9.0.0</jakarta.jakartaee-web-api.version>
         <jakarta.inject-api.version>2.0.1.MR</jakarta.inject-api.version>
-        <lombok.version>1.18.28</lombok.version>
+        <lombok.version>1.18.26</lombok.version>
         <primefaces.version>13.0.0</primefaces.version>
     </properties>
 
@@ -61,12 +61,6 @@
             <classifier>jakarta</classifier>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>jakarta.inject</groupId>
             <artifactId>jakarta.inject-api</artifactId>
             <version>${jakarta.inject-api.version}</version>
@@ -80,6 +74,11 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
         </dependency>
     </dependencies>
 
@@ -98,13 +97,18 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>16</source>
+                    <target>16</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>
                             <version>${org.mapstruct.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

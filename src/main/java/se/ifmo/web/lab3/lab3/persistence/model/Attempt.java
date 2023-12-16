@@ -1,8 +1,9 @@
-package se.ifmo.web.lab3.lab3.bean;
+package se.ifmo.web.lab3.lab3.persistence.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import se.ifmo.web.lab3.lab3.bean.Point;
 
 @Data
 @NoArgsConstructor

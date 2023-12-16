@@ -56,14 +56,14 @@
                     <div class="inner">Выберете R: </div>
                     <h:panelGrid columns="1">
                         <h:outputText id="output" value="R = #{point.r}"/>
-                        <h:inputHidden id="txt2" required="true" value="#{point.r}"/>
-                        <p:slider for="txt2" display="output" style="width: 100px" minValue="2" maxValue="5" step="0.25"/>
+                        <h:inputHidden id="rValue" required="true" value="#{point.r}"/>
+                        <p:slider for="rValue" display="output" style="width: 100px"  minValue="2" maxValue="5" onSlideStart="2" step="0.25" displayTemplate="R = {value}"/>
                     </h:panelGrid>
                 </div>
                 <br/>
 
                 <div class="commandButton">
-                    <h:commandButton value="Submit">
+                    <h:commandButton value="Submit" onclick="return validateBeforeSend()">
                         <f:ajax listener="#{point.submit()}" render="tablePanel" execute="form"
                                 onevent="handleSubmit"/>
 <!--                        <f:ajax listener="#{point.submit()}" render="tablePanel" execute="@form"/>-->

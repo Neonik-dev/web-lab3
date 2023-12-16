@@ -13,3 +13,16 @@ function setY(y, curCheckbox) {
         flag = false;
     }
 }
+
+function validateBeforeSend() {
+    const y = document.getElementById("sendToServer:Y_data").value;
+    if (y) {
+        for (let i = -4; i < 5; i++) {
+            if (i === parseInt(y) && PF(widgetVar + i).isChecked()) {
+                return true;
+            }
+        }
+        document.getElementById("sendToServer:Y_data").value = null;
+    }
+    return false;
+}

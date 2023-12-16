@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class Point implements Serializable {
     private double x;
     private Integer y;
-    private double r;
+    private double r = 3.5;
 
     public void submit() {
         System.out.println(this);

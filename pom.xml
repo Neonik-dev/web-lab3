@@ -17,6 +17,11 @@
         <junit.version>5.9.2</junit.version>
         <jakarta.faces.version>3.0.0</jakarta.faces.version>
         <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
+        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+        <jakarta.jakartaee-web-api.version>9.0.0</jakarta.jakartaee-web-api.version>
+        <jakarta.inject-api.version>2.0.1.MR</jakarta.inject-api.version>
+        <lombok.version>1.18.28</lombok.version>
+        <primefaces.version>13.0.0</primefaces.version>
     </properties>
 
     <dependencies>
@@ -52,26 +57,30 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>13.0.0</version>
+            <version>${primefaces.version}</version>
             <classifier>jakarta</classifier>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.28</version>
+            <version>${lombok.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.inject</groupId>
             <artifactId>jakarta.inject-api</artifactId>
-            <version>2.0.1.MR</version>
+            <version>${jakarta.inject-api.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-web-api</artifactId>
-            <version>9.0.0</version>
+            <version>${jakarta.jakartaee-web-api.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -82,6 +91,22 @@
                 <version>3.3.2</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>

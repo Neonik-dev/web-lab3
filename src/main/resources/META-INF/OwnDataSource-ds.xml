@@ -1,0 +1,28 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+<!--<datasources>-->
+
+<!--    <local-tx-datasource>-->
+
+<!--        <jndi-name>OwnDataSource</jndi-name>-->
+
+<!--        <connection-url>jdbc:postgresql:lab3</connection-url>-->
+
+<!--        <driver-class>org.postgresql.Driver</driver-class>-->
+
+<!--        <user-name>neonik</user-name>-->
+
+<!--        <password>lalala</password>-->
+
+<!--        <valid-connection-checker-class-name>org.jboss.resource.adapter.jdbc.vendor.MySQLValidConnectionChecker-->
+<!--        </valid-connection-checker-class-name>-->
+
+<!--        <metadata>-->
+
+<!--            <type-mapping>postgresql</type-mapping>-->
+
+<!--        </metadata>-->
+
+<!--    </local-tx-datasource>-->
+
+<!--</datasources>-->

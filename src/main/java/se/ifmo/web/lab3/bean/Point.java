@@ -1,4 +1,4 @@
-package se.ifmo.web.lab3.lab3.bean;
+package se.ifmo.web.lab3.bean;
 
 
 import jakarta.enterprise.context.SessionScoped;
@@ -15,7 +15,7 @@ public class Point implements Serializable {
     private Integer y;
     private double r = 3.5;
 
-    public void submit() {
-        System.out.println(this);
+    public boolean validate() {
+        return y != null;
     }
 }

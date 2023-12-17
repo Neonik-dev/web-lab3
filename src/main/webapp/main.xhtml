@@ -64,15 +64,14 @@
 
                 <div class="commandButton">
                     <h:commandButton value="Submit" onclick="return validateBeforeSend()">
-                        <f:ajax listener="#{point.submit()}" render="tablePanel" execute="form"
+                        <f:ajax listener="#{attemptService.addPoint(point)}" render="tablePanel" execute="form"
                                 onevent="handleSubmit"/>
-<!--                        <f:ajax listener="#{point.submit()}" render="tablePanel" execute="@form"/>-->
+<!--                        <f:ajax listener="#{attemptService.addPoint(point)}" render="tablePanel" execute="@form"/>-->
                     </h:commandButton>
                 </div>
             </h:form>
         </div>
         <br/>
-        #{point.toString()}
 
         <div id="plot" class="inline">
             <canvas id="canvas" width="350" height="350"></canvas>

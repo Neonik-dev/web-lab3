@@ -1,24 +1,27 @@
-package se.ifmo.web.lab3.lab3.persistence.model;
+package se.ifmo.web.lab3.persistence.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import se.ifmo.web.lab3.lab3.bean.Point;
+import se.ifmo.web.lab3.bean.Point;
+
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
 @Entity
 @Table(name = "attempts")
-public class Attempt {
+public class Attempt implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "x")
+    @Column(name = "x", nullable = false)
     private double x;
-    @Column(name = "y")
+    @Column(name = "y", nullable = false)
     private int y;
-    @Column(name = "r")
+    @Column(name = "r", nullable = false)
     private double r;
-    @Column(name = "is_hit")
+    @Column(name = "is_hit", nullable = false)
     private boolean isHit;
 
     public Attempt(Point point) {

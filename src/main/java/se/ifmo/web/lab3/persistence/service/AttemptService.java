@@ -2,6 +2,7 @@ package se.ifmo.web.lab3.persistence.service;
 
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
+import se.ifmo.web.lab3.bean.HistoryAttempts;
 import se.ifmo.web.lab3.bean.Point;
 import se.ifmo.web.lab3.persistence.model.Attempt;
 import se.ifmo.web.lab3.mapper.PointMapper;
@@ -20,5 +21,9 @@ public class AttemptService implements Serializable {
             Attempt newAttempt = mapper.toAttempt(point);
             repository.addAttempt(newAttempt);
         }
+    }
+
+    public void getAttempts(double r, HistoryAttempts historyAttempts) {
+        historyAttempts.setAttempts(repository.getAttemptsByR(r));
     }
 }

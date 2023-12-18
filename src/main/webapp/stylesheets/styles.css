@@ -40,6 +40,10 @@ canvas {
     border: 1px solid white;
 }
 
+#generateBlock {
+    margin-left: 200px;
+}
+
 .Y-button-group {
     padding-left: 90px;
 }

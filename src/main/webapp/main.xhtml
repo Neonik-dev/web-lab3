@@ -54,6 +54,9 @@
                         <p:selectBooleanCheckbox widgetVar="checkbox4" onchange="setY(4)">4 </p:selectBooleanCheckbox>
                     </h:panelGrid>
                     <h:inputHidden id="Y_data" required="true" value="#{point.y}"/>
+                    <div>
+                        <div id="errorMessage"></div>
+                    </div>
                 </div>
                 <br/>
 
@@ -73,7 +76,7 @@
                 <br/>
 
                 <div class="commandButton">
-                    <h:commandButton id="sendFormButton" value="Submit" onclick="createPlot()">
+                    <h:commandButton id="sendFormButton" value="Submit" onclick="sendData()">
                         <f:ajax listener="#{attemptService.getAttempts(point, historyAttempts)}" render="generateTable" execute="@form"/>
                     </h:commandButton>
                 </div>

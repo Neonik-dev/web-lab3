@@ -11,6 +11,16 @@ function clearPlot() {
     ctx.clearRect(0, 0, maxLength, maxLength);
 }
 
+function sendData() {
+    document.getElementById("errorMessage").innerHTML = "";
+    let y = document.getElementById("sendToServer:Y_data").value;
+    if (y === "" || isNaN(y) || y.isEmpty()) {
+        document.getElementById("errorMessage").innerHTML = "Не выбрано значение y";
+    } else {
+        createPlot();
+    }
+}
+
 
 function createPlot() {
     clearPlot();

@@ -107,11 +107,19 @@ window.addEventListener('DOMContentLoaded', function () {
         const x = event.pageX - event.target.offsetLeft - maxLength / 2;
         const y = maxLength / 2 - event.pageY + event.target.offsetTop;
 
-        alert(Math.round(y / R * userR));
         setY(Math.round(Math.round(y / R * userR)));
+        document.getElementById("sendToServer:X-input_hinput").value = Math.round(x / R * userR * 1000) / 1000;
         document.getElementById("sendToServer:X-input_input").value = Math.round(x / R * userR * 1000) / 1000;
         document.getElementById("sendToServer:rValue").value = userR;
         document.getElementById('sendToServer:sendFormButton').click();
-        alert("123");
     }
+
+    function iterateAttempts() {
+        const arr = document.getElementById("generateTable").getElementsByTagName("tbody")[0].innerText.split("\n");
+        for (let i = 0; i < arr.length; i++) {
+            let attempt = arr[i].split("\t");
+            drawPoint(attempt[0], attempt[1], attempt[2]);
+        }
+    }
+    iterateAttempts();
 }, false);

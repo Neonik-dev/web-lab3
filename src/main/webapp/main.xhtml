@@ -73,7 +73,7 @@
                 <br/>
 
                 <div class="commandButton">
-                    <h:commandButton id="sendFormButton" value="Submit" onclick="return validateBeforeSend()">
+                    <h:commandButton id="sendFormButton" value="Submit" onclick="createPlot()">
                         <f:ajax listener="#{attemptService.getAttempts(point, historyAttempts)}" render="generateTable" execute="@form"/>
                     </h:commandButton>
                 </div>

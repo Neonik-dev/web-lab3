@@ -4,6 +4,7 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import lombok.Data;
 import se.ifmo.web.lab3.persistence.model.Attempt;
+import se.ifmo.web.lab3.persistence.service.AttemptService;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,4 +15,8 @@ import java.util.List;
 @Data
 public class HistoryAttempts implements Serializable {
     private List<Attempt> attempts = new ArrayList<>();
+
+    public HistoryAttempts() {
+        new AttemptService().getAttempts(3.5, this);
+    }
 }

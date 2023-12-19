@@ -74,7 +74,7 @@
 
                 <div class="commandButton">
                     <h:commandButton value="Submit" onclick="return validateBeforeSend()">
-                        <f:ajax listener="#{attemptService.addPoint(point)}" render="tablePanel" execute="@form"/>
+                        <f:ajax listener="#{attemptService.getAttempts(point, historyAttempts)}" render="generateTable" execute="@form"/>
                     </h:commandButton>
                 </div>
             </h:form>
@@ -88,22 +88,24 @@
         <h:panelGrid columns="1" id="generateBlock" class="inline">
             <p:autoUpdate on="TableEvent"/>
                 <c:if test="#{historyAttempts != null and historyAttempts.attempts != null and !historyAttempts.attempts.isEmpty()}">
-                    <table id='generateTable'>
-                        <tr>
-                            <th>X</th>
-                            <th>Y</th>
-                            <th>R</th>
-                            <th>Точка входит в ОДЗ</th>
-                        </tr>
-                        <c:forEach var="attempt" items="#{historyAttempts.attempts}">
-                            <tr>
-                                <td>#{attempt.x}</td>
-                                <td>#{attempt.y}</td>
-                                <td>#{attempt.r}</td>
-                                <td>#{attempt.hit}</td>
-                            </tr>
-                        </c:forEach>
-                    </table>
+                    <h:dataTable id='generateTable' value="#{historyAttempts.attempts}" var="dot">
+                        <h:column>
+                            <f:facet name="header">X</f:facet>
+                            #{dot.x}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Y</f:facet>
+                            #{dot.y}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">R</f:facet>
+                            #{dot.r}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Точка входит в ОДЗ</f:facet>
+                            #{dot.hit}
+                        </h:column>
+                    </h:dataTable>
                 </c:if>
                 <c:if test="#{historyAttempts == null || historyAttempts.attempts == null || historyAttempts.attempts.isEmpty()}">
                     <h4>

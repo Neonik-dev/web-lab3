@@ -28,6 +28,7 @@ public class AttemptService implements Serializable {
     }
 
     public void getAttempts(Point point, HistoryAttempts historyAttempts) {
+        System.out.println("YYEESS");
         addPoint(point);
         historyAttempts.setAttempts(repository.getAttemptsByR(point.getR()));
     }

@@ -102,20 +102,16 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     canvas.onclick = (event) => {
-        if (validR()) {
-            const userR = getR();
-            document.getElementById("errorMessage").innerHTML = "";
+        const userR = getR();
 
-            const x = event.pageX - event.target.offsetLeft - maxLength / 2;
-            const y = maxLength / 2 - event.pageY + event.target.offsetTop;
+        const x = event.pageX - event.target.offsetLeft - maxLength / 2;
+        const y = maxLength / 2 - event.pageY + event.target.offsetTop;
 
-            document.getElementById("Y-input").value = Math.round(y / R * userR * 1000) / 1000;
-            document.querySelector(".X-input").value = Math.round(x / R * userR);
-            if (isValid()) {
-                document.getElementById('sendToServer').submit();
-            }
-        } else {
-            document.getElementById("errorMessage").innerHTML = "Value for R is not selected";
-        }
+        alert(Math.round(y / R * userR));
+        setY(Math.round(Math.round(y / R * userR)));
+        document.getElementById("sendToServer:X-input_input").value = Math.round(x / R * userR * 1000) / 1000;
+        document.getElementById("sendToServer:rValue").value = userR;
+        document.getElementById('sendToServer:sendFormButton').click();
+        alert("123");
     }
 }, false);

@@ -1,7 +1,7 @@
 const widgetVar = "checkbox";
 let flag = false;
 
-function setY(y, curCheckbox) {
+function setY(y) {
     if (!flag) {
         flag = true;
         document.getElementById("sendToServer:Y_data").value = y;
@@ -12,6 +12,11 @@ function setY(y, curCheckbox) {
         }
         flag = false;
     }
+}
+
+function setR() {
+    alert("123");
+
 }
 
 function validateBeforeSend() {

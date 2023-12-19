@@ -24,6 +24,7 @@ public class AttemptService implements Serializable {
     }
 
     public void getAttempts(double r, HistoryAttempts historyAttempts) {
+        System.out.println("YYESSS");
         historyAttempts.setAttempts(repository.getAttemptsByR(r));
     }
 }

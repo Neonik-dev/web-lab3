@@ -22,42 +22,52 @@
         <div id="buttons" class="inline">
             <h:form action="${pageContext.request.contextPath}/point/send" method="post" id="sendToServer">
                 <div class="X-button-group">
-                    <div class="inner">Выберете X: </div>
+                    <div class="inner">Выберете X:</div>
                     <p:inputNumber name="x" id="X-input" placeholder="(от -5 до 5)" required="true" decimalPlaces="3"
-                                   maxValue="5" minValue="-5" onkeypress="if (event.keyCode === 13) { return false; }" value="#{point.x}"/>
+                                   maxValue="5" minValue="-5" onkeypress="if (event.keyCode === 13) { return false; }"
+                                   value="#{point.x}"/>
                 </div>
                 <br/>
                 <div class="Y-button-group">
                     <h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="20" styleClass="Y-buttons">
-                        <p:selectBooleanCheckbox widgetVar="checkbox-4" onchange="setY(-4, this)">-4 </p:selectBooleanCheckbox>
-                        <p:selectBooleanCheckbox widgetVar="checkbox-3" onchange="setY(-3, this)">-3 </p:selectBooleanCheckbox>
-                        <p:selectBooleanCheckbox widgetVar="checkbox-2" onchange="setY(-2, this)">-2 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox-4"
+                                                 onchange="setY(-4)">-4 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox-3"
+                                                 onchange="setY(-3)">-3 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox-2"
+                                                 onchange="setY(-2)">-2 </p:selectBooleanCheckbox>
                     </h:panelGrid>
                 </div>
                 <div class="Y-button-group1">
                     <h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="20" styleClass="Y-buttons">
-                        <div class="inner">Введите Y: </div>
-                        <p:selectBooleanCheckbox widgetVar="checkbox-1" onchange="setY(-1, this)">-1 </p:selectBooleanCheckbox>
-                        <p:selectBooleanCheckbox widgetVar="checkbox0" onchange="setY(0, this)">0 </p:selectBooleanCheckbox>
-                        <p:selectBooleanCheckbox widgetVar="checkbox1" onchange="setY(1, this)">1 </p:selectBooleanCheckbox>
+                        <div class="inner">Введите Y:</div>
+                        <p:selectBooleanCheckbox widgetVar="checkbox-1"
+                                                 onchange="setY(-1)">-1 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox0" onchange="setY(0)">0 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox1" onchange="setY(1)">1 </p:selectBooleanCheckbox>
                     </h:panelGrid>
                 </div>
                 <div class="Y-button-group">
                     <h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="20" styleClass="Y-buttons">
-                        <p:selectBooleanCheckbox widgetVar="checkbox2" onchange="setY(2, this)">2 </p:selectBooleanCheckbox>
-                        <p:selectBooleanCheckbox widgetVar="checkbox3" onchange="setY(3, this)">3 </p:selectBooleanCheckbox>
-                        <p:selectBooleanCheckbox widgetVar="checkbox4" onchange="setY(4, this)">4 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox2" onchange="setY(2)">2 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox3" onchange="setY(3)">3 </p:selectBooleanCheckbox>
+                        <p:selectBooleanCheckbox widgetVar="checkbox4" onchange="setY(4)">4 </p:selectBooleanCheckbox>
                     </h:panelGrid>
                     <h:inputHidden id="Y_data" required="true" value="#{point.y}"/>
                 </div>
                 <br/>
 
                 <div class="R-button-group">
-                    <div class="inner">Выберете R: </div>
+                    <div class="inner">Выберете R:</div>
                     <h:panelGrid columns="1">
                         <h:outputText id="output" value="R = #{point.r}"/>
-                        <h:inputHidden id="rValue" required="true" value="#{point.r}"/>
-                        <p:slider for="rValue" display="output" style="width: 100px"  minValue="2" maxValue="5" onSlideStart="2" step="0.25" displayTemplate="R = {value}"/>
+                        <h:inputHidden id="rValue" required="true" value="#{point.r}">
+                        </h:inputHidden>
+                        <p:slider for="rValue" display="output" style="width: 100px" minValue="2" maxValue="5"
+                                  onSlideStart="2" step="0.25" displayTemplate="R = {value}">
+                            <p:ajax event="slideEnd" listener="#{attemptService.getAttempts(point.r, historyAttempts)}"
+                                    update="@obs(TableEvent)"/>
+                        </p:slider>
                     </h:panelGrid>
                 </div>
                 <br/>
@@ -70,37 +80,37 @@
             </h:form>
         </div>
         <br/>
-        ${historyAttempts.toString()}
 
         <div id="plot" class="inline">
             <canvas id="canvas" width="350" height="350"></canvas>
         </div>
 
-        <div id="generateBlock" class="inline">
-            <c:if test="#{historyAttempts != null and historyAttempts.attempts != null and !historyAttempts.attempts.isEmpty()}">
-                <table id='generateTable'>
-                    <tr>
-                        <th>X</th>
-                        <th>Y</th>
-                        <th>R</th>
-                        <th>Точка входит в ОДЗ</th>
-                    </tr>
-                    <c:forEach var="attempt" items="#{historyAttempts.attempts}">
+        <h:panelGrid columns="1" id="generateBlock" class="inline">
+            <p:autoUpdate on="TableEvent"/>
+                <c:if test="#{historyAttempts != null and historyAttempts.attempts != null and !historyAttempts.attempts.isEmpty()}">
+                    <table id='generateTable'>
                         <tr>
-                            <td>#{attempt.x}</td>
-                            <td>#{attempt.y}</td>
-                            <td>#{attempt.r}</td>
-                            <td>#{attempt.hit}</td>
+                            <th>X</th>
+                            <th>Y</th>
+                            <th>R</th>
+                            <th>Точка входит в ОДЗ</th>
                         </tr>
-                    </c:forEach>
-                </table>
-            </c:if>
-            <c:if test="#{historyAttempts == null || historyAttempts.attempts == null || historyAttempts.attempts.isEmpty()}">
-                <h4>
-                    <span class="outputStub notification">Нет результатов</span>
-                </h4>
-            </c:if>
-        </div>
+                        <c:forEach var="attempt" items="#{historyAttempts.attempts}">
+                            <tr>
+                                <td>#{attempt.x}</td>
+                                <td>#{attempt.y}</td>
+                                <td>#{attempt.r}</td>
+                                <td>#{attempt.hit}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </c:if>
+                <c:if test="#{historyAttempts == null || historyAttempts.attempts == null || historyAttempts.attempts.isEmpty()}">
+                    <h4>
+                        <span class="outputStub notification">Нет результатов</span>
+                    </h4>
+                </c:if>
+        </h:panelGrid>
 
         <div class="footer">
             <div id="goIndex">

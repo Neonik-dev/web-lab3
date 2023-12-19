@@ -14,7 +14,7 @@ function clearPlot() {
 function sendData() {
     document.getElementById("errorMessage").innerHTML = "";
     let y = document.getElementById("sendToServer:Y_data").value;
-    if (y === "" || isNaN(y) || y.isEmpty()) {
+    if (y === "" || y === undefined || isNaN(y)) {
         document.getElementById("errorMessage").innerHTML = "Не выбрано значение y";
     } else {
         createPlot();
